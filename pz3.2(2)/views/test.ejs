@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head><title>Тест</title></head>
+<body>
+<h2>Пройти тест</h2>
+<form action="/submit" method="POST">
+    <input type="hidden" name="name" value="<%= name %>">
+    <input type="hidden" name="lastname" value="<%= lastname %>">
+    <% Object.keys(testData).forEach((key, i) => { %>
+    <div>
+        <p><%= i+1 %>. <%= testData[key].text %></p>
+        <% ['a', 'b', 'c', 'd'].forEach(letter => { %>
+        <label>
+            <input type="radio" name="<%= key %>" value="<%= letter %>" required>
+            <%= testData[key][letter] %>
+        </label><br>
+        <% }) %>
+    </div>
+    <% }) %>
+    <button type="submit">Завершити тест</button>
+</form>
+</body>
+</html>

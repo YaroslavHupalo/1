@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Результати</title>
+<style>
+.correct { color: green; }
+.wrong { color: red; }
+.user { color: blue; }
+</style>
+</head>
+<body>
+<h2>Результати тесту для <%= name %> <%= lastname %></h2>
+<p>Правильних відповідей: <%= correct %> із <%= total %></p>
+<% results.forEach((res, i) => { %>
+<div>
+    <p><%= i+1 %>. <%= res.text %></p>
+    <% ['a', 'b', 'c', 'd'].forEach(letter => { %>
+    <p class="
+        <%= letter === res.correctAnswer ? 'correct' : '' %>
+        <%= letter === res.userAnswer ? 'user' : '' %>
+        <%= res.userAnswer === letter && letter !== res.correctAnswer ? 'wrong' : '' %>
+    ">
+        <%= letter %>. <%= res.options[letter] %>
+    </p>
+    <% }) %>
+</div>
+<% }) %>
+<a href="/">Повернутись на головну</a>
+</body>
+</html>
